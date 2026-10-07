@@ -1,4 +1,6 @@
 const express = require("express");
+const jwt = require("jsonwebtoken");
+const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 
 const app = express();
@@ -6,6 +8,9 @@ const PORT = 3000;
 
 // Middleware for parsing JSON requests
 app.use(express.json());
+
+// Authenticate Routes
+app.use("/api/auth", authRoutes);
 
 // Routes
 app.use("/api/users", userRoutes);

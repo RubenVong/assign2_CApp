@@ -1,6 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/userModel");
+const { authenticateToken } = require("../midware/auth");
+
+//check if user gives a vaild token when doing a request
+router.use(authenticateToken);
 
 // Endpoint: GET /api/users - Find all users (READ)
 router.get("/", async function (req, res) {

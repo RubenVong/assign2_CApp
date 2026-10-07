@@ -23,6 +23,13 @@ const User = {
     return rows[0] || null;
   },
 
+  //Use for authRoutes to confirm vaild user in database
+  async findByUsername(username) {
+    const sql = `SELECT * FROM users WHERE username = ?`;
+    const [rows] = await db.execute(sql, [username]);
+    return rows[0] || null;
+  },
+
   // Update
   async update(id, userData) {
     const { username, lastname, firstname, passwd, email, urole } = userData;
